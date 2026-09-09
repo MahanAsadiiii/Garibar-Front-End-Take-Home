@@ -10,6 +10,8 @@
 
     /* Bundler mode */
     "moduleResolution": "bundler",
+    // So TS can load mockApi.js and pair it with mockApi.d.ts
+    "allowJs": true,
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
     "moduleDetection": "force",
