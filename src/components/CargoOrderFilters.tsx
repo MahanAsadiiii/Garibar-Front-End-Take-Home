@@ -1,5 +1,8 @@
 import { Input, Select, Space } from "antd";
-import type { CargoOrderStatus } from "../types/cargo";
+import {
+  CARGO_ORDER_STATUS_OPTIONS,
+  type CargoOrderStatus,
+} from "../types/cargo";
 
 export type CargoOrderFiltersValue = {
   status?: CargoOrderStatus;
@@ -14,9 +17,7 @@ type Props = {
 
 const STATUS_OPTIONS = [
   { label: "All statuses", value: "" },
-  { label: "Open", value: "open" },
-  { label: "In progress", value: "in_progress" },
-  { label: "Closed", value: "closed" },
+  ...CARGO_ORDER_STATUS_OPTIONS,
 ];
 
 // Filter controls for status, origin city, and goods search
