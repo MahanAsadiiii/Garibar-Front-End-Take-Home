@@ -1,4 +1,20 @@
-export type CargoOrderStatus = "open" | "in_progress" | "closed";
+// Single source of truth — add a status here and options/labels follow
+export const CARGO_ORDER_STATUSES = ["open", "in_progress", "closed"] as const;
+
+export type CargoOrderStatus = (typeof CARGO_ORDER_STATUSES)[number];
+
+export const CARGO_ORDER_STATUS_LABELS: Record<CargoOrderStatus, string> = {
+  open: "Open",
+  in_progress: "In progress",
+  closed: "Closed",
+};
+
+export const CARGO_ORDER_STATUS_OPTIONS = CARGO_ORDER_STATUSES.map((value) => ({
+  label: CARGO_ORDER_STATUS_LABELS[value],
+  value,
+}));
+
+export const DEFAULT_CARGO_ORDER_STATUS: CargoOrderStatus = "open";
 
 export interface CargoOrder {
   id: number;
