@@ -5,7 +5,7 @@ export type CargoOrderStatus = (typeof CARGO_ORDER_STATUSES)[number];
 
 export const CARGO_ORDER_STATUS_LABELS: Record<CargoOrderStatus, string> = {
   open: "Open",
-  in_progress: "In progress",
+  in_progress: "In Progress",
   closed: "Closed",
 };
 

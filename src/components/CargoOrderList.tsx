@@ -15,6 +15,7 @@ import {
   useCargoOrders,
   useDeleteCargoOrder,
 } from "../hooks/useCargoOrders";
+import { useCargoListUrlState } from "../hooks/useCargoListUrlState";
 import {
   CARGO_ORDER_STATUS_LABELS,
   type CargoOrder,
@@ -32,13 +33,11 @@ const STATUS_COLOR: Record<CargoOrderStatus, string> = {
 };
 
 const CargoOrderList = () => {
-  // Server-side pagination state
-  const [page, setPage] = useState(1);
-  const [perPage, setPerPage] = useState(10);
+  const { page, setPage, perPage, setPerPage, filters, setFilters } =
+    useCargoListUrlState();
 
-  // Immediate UI filters + debounced search for the API
-  const [filters, setFilters] = useState<CargoOrderFiltersValue>({});
-  const [debouncedSearch, setDebouncedSearch] = useState<string | undefined>();
+  // Debounced search for the API (URL keeps the live input value)
+  const [debouncedSearch, setDebouncedSearch] = useState(filters.search);
 
   // Create / edit modal state (null order = create)
   const [modalOpen, setModalOpen] = useState(false);
@@ -88,6 +87,7 @@ const CargoOrderList = () => {
   };
 
   const columns: ColumnsType<CargoOrder> = [
+    { title: "ID", dataIndex: "id", key: "id", width: 72 },
     { title: "Goods", dataIndex: "goods_name", key: "goods_name" },
     { title: "Origin", dataIndex: "origin_city", key: "origin_city" },
     {
