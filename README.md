@@ -73,5 +73,17 @@ src/
 
 ## Time spent
 
-About **5–6 hours** (within the suggested range).
+About **5-6 hours** (within the suggested range).
+
+## What I would add with more time
+
+- Sync filters and page with the URL (shareable / refresh-safe state)
+- Unit tests for query-key helpers and debounce behavior
+- Optimistic updates for delete / edit
+- Stronger number formatting for weight and a consistent locale for rial amounts
+- Trim unused optional tooling and tighten production polish
+
+## AI tools
+
+I used Cursor. The app architecture, React Query setup, forms, and TypeScript types were written and reviewed by me and Cursor, and I can walk through any part of the code.
 
