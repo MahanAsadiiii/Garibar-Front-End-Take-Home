@@ -88,6 +88,7 @@ const CargoOrderList = () => {
   };
 
   const columns: ColumnsType<CargoOrder> = [
+    { title: "ID", dataIndex: "id", key: "id", width: 72 },
     { title: "Goods", dataIndex: "goods_name", key: "goods_name" },
     { title: "Origin", dataIndex: "origin_city", key: "origin_city" },
     {
