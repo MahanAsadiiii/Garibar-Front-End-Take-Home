@@ -49,7 +49,8 @@ UI (components) → hooks (React Query) → api/cargoOrders.ts → mock/mockApi.
 
 - **One page with a modal** for create/edit instead of a separate route — enough for this scope and matches the brief.
 - **Server-side pagination and filters** via `getCargoOrders` (`page`, `per_page`, `status`, `origin_city`, `search`). Changing filters resets to page 1.
-- **Debounced goods search (~300ms)** so typing does not refetch on every keystroke. Status and origin update immediately.
+- **URL state:** page, page size, and filters are stored in the query string (`replaceState`), so refresh and share keep the same view. Defaults are omitted from the URL.
+- **Debounced goods search (~300ms)** so typing does not refetch every keystroke. Status and origin update immediately.
 - **Cache updates:** mutations use `invalidateQueries` on the shared `cargoOrders` key rather than hand-written optimistic updates — simpler and correct with the mock’s delay.
 - **Status options** are defined once in `src/types/cargo.ts` and reused in filters and the form.
 - **English UI**, no RTL, no auth — as specified.
@@ -66,6 +67,7 @@ src/
     CargoOrderFilters.tsx     # status, origin, goods search
     CargoOrderFormModal.tsx   # create / edit form
   hooks/useCargoOrders.ts     # React Query query + mutations
+  hooks/useCargoListUrlState.ts # page / filters synced to URL
   mock/mockApi.js             # assignment mock (unchanged)
   mock/mockApi.d.ts           # typings for the JS module
   types/cargo.ts              # CargoOrder and API types
@@ -77,8 +79,7 @@ About **5-6 hours** (within the suggested range).
 
 ## What I would add with more time
 
-- Sync filters and page with the URL (shareable / refresh-safe state)
-- Unit tests for query-key helpers and debounce behavior
+- Unit tests for query-key helpers and debounce / URL parsing
 - Optimistic updates for delete / edit
 - Stronger number formatting for weight and a consistent locale for rial amounts
 - Trim unused optional tooling and tighten production polish
